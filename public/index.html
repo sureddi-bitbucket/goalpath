@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Goalpath — a goal, a date, and a mix</title>
+  <meta name="description" content="Educational goal-based investing notes from SEC filings, Treasury yields, and BLS inflation. Not advice and not a guaranteed return.">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,560;9..144,640&family=Public+Sans:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <p class="banner" role="note">Education only. Not a broker, not personal advice, and not a guaranteed return. You can lose money.</p>
+  <header class="mast">
+    <p class="mark">Goalpath</p>
+    <h1>A goal, a date, and a mix.</h1>
+    <p class="lede">The page reads official filings and official statistics, then writes a study plan. It will not name a stock to buy, and it will not name a price at which to sell.</p>
+  </header>
+
+  <main>
+    <section class="method" aria-labelledby="method-title">
+      <h2 id="method-title">How a suggestion is made</h2>
+      <ol>
+        <li>Your date decides how much can sit in stocks. A purchase next year is mostly cash. Income that may last decades keeps a stock share.</li>
+        <li>The Treasury yield curve and the latest CPI reading set the illustration. They are context, not a forecast.</li>
+        <li>Mutual funds and ETFs are examples of a category. The prospectus filed with the SEC is the document that counts.</li>
+        <li>Adding, reducing, and rebalancing follow the date and a 5 percentage-point band. A headline is only a reason to open a filing.</li>
+      </ol>
+    </section>
+
+    <div class="desk">
+      <form id="goal-form" class="sheet">
+        <h2>The goal</h2>
+        <div class="examples">
+          <button type="button" data-example="house">House in 4 years</button>
+          <button type="button" data-example="retirement">Income in 25 years</button>
+          <button type="button" data-example="tuition">Tuition in 18 months</button>
+        </div>
+        <label>Name
+          <input name="goalName" maxlength="80" placeholder="House down payment" autocomplete="off">
+        </label>
+        <fieldset>
+          <legend>What the money is for</legend>
+          <label class="choice"><input type="radio" name="goalUse" value="spend" checked> I will spend it around a date</label>
+          <label class="choice"><input type="radio" name="goalUse" value="ongoing"> I will draw income over many years</label>
+        </fieldset>
+        <div class="pair">
+          <label>Target amount
+            <input name="targetAmount" type="number" min="1" step="1" required inputmode="decimal">
+          </label>
+          <label>Already saved
+            <input name="currentSavings" type="number" min="0" step="1" value="0" required inputmode="decimal">
+          </label>
+        </div>
+        <div class="pair">
+          <label>Monthly addition
+            <input name="monthlyContribution" type="number" min="0" step="1" value="0" required inputmode="decimal">
+          </label>
+          <label>Target date
+            <input name="targetDate" type="date" required>
+          </label>
+        </div>
+        <fieldset>
+          <legend>How much swing you can accept</legend>
+          <label class="choice"><input type="radio" name="risk" value="conservative"> Conservative — smaller stock share</label>
+          <label class="choice"><input type="radio" name="risk" value="moderate" checked> Moderate — the baseline mix</label>
+          <label class="choice"><input type="radio" name="risk" value="growth"> Growth — larger stock share, still capped</label>
+        </fieldset>
+        <label>Account
+          <select name="account">
+            <option value="taxable">Taxable brokerage</option>
+            <option value="retirement">Workplace plan or IRA</option>
+            <option value="education">Education savings</option>
+          </select>
+        </label>
+        <button type="submit" class="primary" id="build">Show the educational plan</button>
+        <p id="form-error" class="form-error" role="alert" hidden></p>
+      </form>
+
+      <section id="result" class="result" aria-live="polite">
+        <p class="waiting">Fill in the goal. The mix, the add and reduce rules, and the fund examples will land here, with the figures that were used.</p>
+      </section>
+    </div>
+
+    <section class="sheet filings" aria-labelledby="filing-title">
+      <h2 id="filing-title">Filing desk</h2>
+      <p>Look up one company in the SEC’s public list. You get the latest annual and quarterly reports and recent 8-Ks. You do not get a rating.</p>
+      <form id="filing-form" class="filing-row">
+        <label>Ticker
+          <input name="ticker" maxlength="8" placeholder="AAPL" autocapitalize="characters" autocomplete="off">
+        </label>
+        <button type="submit">Open SEC filings</button>
+      </form>
+      <div id="filing-result"></div>
+    </section>
+
+    <section class="sources" aria-labelledby="sources-title">
+      <h2 id="sources-title">What this desk reads</h2>
+      <div id="sources"></div>
+    </section>
+  </main>
+
+  <footer>
+    <p id="footer-disclaimer"></p>
+    <p>Goalpath does not place trades and does not ask for a brokerage password.</p>
+  </footer>
+  <script src="/app.js"></script>
+</body>
+</html>

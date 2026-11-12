@@ -1,0 +1,14 @@
+{
+  "name": "goalpath",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Educational goal-based investing planner. Uses SEC filings, Treasury yields, and BLS inflation. Not advice and not a promise of returns.",
+  "type": "module",
+  "engines": {
+    "node": ">=18"
+  },
+  "scripts": {
+    "start": "node server.js",
+    "test": "node --test"
+  }
+}
